@@ -213,6 +213,43 @@ const TaskDetails = () => {
               </div>
             </div>
           )}
+
+          {analytics && analytics.bar_chart.length > 0 && (
+            <div className="analysis-cards">
+              <div className="card">
+                <h3>Total Sales</h3>
+                <p className="card-value">
+                  {analytics.bar_chart.reduce((sum, item) => sum + item.count, 0)}
+                </p>
+              </div>
+
+              <div className="card">
+                <h3>Top Company</h3>
+                <p className="card-value">
+                  {analytics.bar_chart[0].company}
+                </p>
+                <p className="card-subtitle">
+                  {analytics.bar_chart[0].count} sales
+                </p>
+              </div>
+
+              <div className="card">
+                <h3>Average Price</h3>
+                <p className="card-value">
+                  ${((analytics.price_chart.reduce((sum, item) => sum + item.avg_price, 0) / 
+                    analytics.price_chart.length) || 0).toFixed(2)}
+                </p>
+              </div>
+              
+              <div className="card">
+                <h3>Price Range</h3>
+                <p className="card-value">
+                  ${Math.min(...analytics.price_chart.map(item => item.avg_price)).toFixed(2)} - 
+                  ${Math.max(...analytics.price_chart.map(item => item.avg_price)).toFixed(2)}
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>

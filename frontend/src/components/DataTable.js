@@ -5,7 +5,7 @@ const DataTable = ({ data }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   
-  // Sort data based on sortConfig
+  
   const sortedData = [...data].sort((a, b) => {
     if (!sortConfig.key) return 0;
     

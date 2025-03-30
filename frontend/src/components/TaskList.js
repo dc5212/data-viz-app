@@ -30,7 +30,7 @@ const TaskList = () => {
     setRetrying(taskId);
     try {
       await retryTask(taskId);
-      await loadTasks(); // Refresh tasks after retry
+      await loadTasks(); 
     } catch (error) {
       console.error('Error retrying task:', error);
     } finally {

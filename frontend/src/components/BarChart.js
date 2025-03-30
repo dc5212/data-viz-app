@@ -6,11 +6,11 @@ const BarChart = ({ data }) => {
   
   useEffect(() => {
     
-    // Clear previous chart
+    
     d3.select(chartRef.current).selectAll("*").remove();
 
     if (!data || data.length === 0) {
-      // Create SVG for empty state
+      
       const svg = d3.select(chartRef.current)
         .append("svg")
         .attr("width", 600)
@@ -52,7 +52,7 @@ const BarChart = ({ data }) => {
       .nice()
       .range([height, 0]);
     
-    // Create bars - FIXED: This section was missing the data binding and enter selection
+    
     svg.selectAll(".bar")
       .data(data)
       .enter()
@@ -63,19 +63,19 @@ const BarChart = ({ data }) => {
         .attr("width", x.bandwidth())
         .attr("height", d => height - y(d.count))
         .attr("fill", "#4682b4")
-        .attr("rx", 4) // Rounded corners
+        .attr("rx", 4)
         .attr("ry", 4)
         .on("mouseover", function() {
             d3.select(this)
               .transition()
               .duration(300)
-              .attr("fill", "#2c5282"); // Darker blue on hover
+              .attr("fill", "#2c5282"); 
         })
         .on("mouseout", function() {
             d3.select(this)
               .transition()
               .duration(300)
-              .attr("fill", "#4682b4"); // Back to original color
+              .attr("fill", "#4682b4");
         });
     
     // Add axes

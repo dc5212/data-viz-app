@@ -1,4 +1,3 @@
-// src/components/PriceChart.js
 import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 
@@ -8,7 +7,7 @@ const PriceChart = ({ data }) => {
   useEffect(() => {
     if (!data || data.length === 0) return;
     
-    // Clear previous chart
+    
     d3.select(chartRef.current).selectAll("*").remove();
     
     // Set dimensions
@@ -31,7 +30,7 @@ const PriceChart = ({ data }) => {
       .padding(0.2);
     
     const y = d3.scaleLinear()
-      .domain([0, d3.max(data, d => d.avg_price) * 1.1]) // Add 10% padding
+      .domain([0, d3.max(data, d => d.avg_price) * 1.1]) 
       .nice()
       .range([height, 0]);
     

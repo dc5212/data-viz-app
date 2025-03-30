@@ -66,7 +66,7 @@ const TaskDetails = () => {
   };
   
   
-  // Add this right after you apply filters
+  
   const applyFilters = async () => {
     setLoading(true);
     try {

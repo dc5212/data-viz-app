@@ -1,4 +1,3 @@
-// Create a new component: PriceRangeChart.js
 import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 
@@ -8,7 +7,7 @@ const PriceRangeChart = ({ data }) => {
   useEffect(() => {
     if (!data || data.length === 0) return;
     
-    // Clear previous chart
+    
     d3.select(chartRef.current).selectAll("*").remove();
     
     // Extract prices
@@ -27,7 +26,7 @@ const PriceRangeChart = ({ data }) => {
       .append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
     
-    // Create histogram bins
+    
     const histogram = d3.histogram()
       .value(d => d)
       .domain(d3.extent(prices))

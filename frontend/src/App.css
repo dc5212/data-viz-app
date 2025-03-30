@@ -279,7 +279,7 @@ body {
     transform: translateY(-2px);
   }
   
-  /* Loading indicator */
+  
   .loading-spinner {
     display: flex;
     justify-content: center;
@@ -307,7 +307,7 @@ body {
     }
   }
   
-  /* Responsive adjustments */
+  
   @media (max-width: 768px) {
     .chart-container {
       min-width: 100%;
@@ -322,7 +322,7 @@ body {
     }
   }
   
-  /* Task card hover effect */
+  
   .task-list table tr {
     transition: all 0.2s ease;
   }
@@ -331,7 +331,7 @@ body {
     background-color: #f8f9fa;
   }
   
-  /* View Results link styling */
+  
   a.view-results {
     color: #4682b4;
     text-decoration: none;
@@ -344,14 +344,13 @@ body {
     text-decoration: underline;
   }
   
-  /* Add a nice focus style for inputs */
+  
   input:focus, select:focus {
     outline: none;
     border-color: #4682b4;
     box-shadow: 0 0 0 2px rgba(70, 130, 180, 0.2);
   }
 
-  /* Dashboard styles */
 .dashboard-summary {
   display: flex;
   justify-content: space-between;
@@ -412,7 +411,6 @@ body {
   background-color: #2a5980;
 }
 
-/* Nav styles */
 .App-header nav {
   display: flex;
   gap: 2rem;
@@ -461,7 +459,6 @@ body {
   color: #666;
 }
 
-/* Add to your App.css */
 .failed-task {
   background-color: rgba(255, 0, 0, 0.05);
 }

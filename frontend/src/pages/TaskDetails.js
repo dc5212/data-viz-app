@@ -10,6 +10,7 @@ const TaskDetails = () => {
   const [analytics, setAnalytics] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [hasData, setHasData] = useState(true);
   const [filters, setFilters] = useState({
     company: '',
     year: ''
@@ -55,12 +56,20 @@ const TaskDetails = () => {
   };
   
   
+  // Add this right after you apply filters
   const applyFilters = async () => {
     setLoading(true);
     try {
       // Fetch analytics with the current filters
       const analyticsData = await fetchTaskAnalytics(taskId, filters);
       setAnalytics(analyticsData);
+      
+      // Check if the filtered data is empty
+      const hasTimelineData = analyticsData.timeline_chart && analyticsData.timeline_chart.length > 0;
+      const hasBarData = analyticsData.bar_chart && analyticsData.bar_chart.length > 0;
+      
+      // Set a state variable to track if we have data
+      setHasData(hasTimelineData || hasBarData);
     } catch (err) {
       console.error('Error applying filters:', err);
       setError('Error applying filters. Please try again.');

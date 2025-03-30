@@ -5,10 +5,29 @@ const LineChart = ({ data }) => {
   const chartRef = useRef();
   
   useEffect(() => {
-    if (!data || data.length === 0) return;
+    
     
     // Clear previous chart
     d3.select(chartRef.current).selectAll("*").remove();
+
+    if (!data || data.length === 0) {
+      // Create SVG for empty state
+      const svg = d3.select(chartRef.current)
+        .append("svg")
+        .attr("width", 600)
+        .attr("height", 400);
+      
+      // Add "No data" message
+      svg.append("text")
+        .attr("x", 300)
+        .attr("y", 200)
+        .attr("text-anchor", "middle")
+        .style("font-size", "16px")
+        .style("fill", "#666")
+        .text("No data available for the selected filters");
+        
+      return;
+    }
     
     // Sort data by date
     const sortedData = [...data].sort((a, b) => new Date(a.date) - new Date(b.date));

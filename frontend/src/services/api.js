@@ -43,3 +43,8 @@ export const exportTaskData = async (taskId, format = 'csv', filters = {}) => {
   
   window.location.href = `${API_URL}/tasks/${taskId}/export?${params.toString()}`;
 };
+
+export const retryTask = async (taskId) => {
+  const response = await axios.post(`${API_URL}/tasks/${taskId}/retry`);
+  return response.data;
+};

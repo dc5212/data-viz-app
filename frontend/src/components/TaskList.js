@@ -1,29 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchTasks } from '../services/api';
+import { fetchTasks, retryTask } from '../services/api';
 
 const TaskList = () => {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [retrying, setRetrying] = useState(null);
+  
+  const loadTasks = async () => {
+    try {
+      const data = await fetchTasks();
+      setTasks(data);
+    } catch (error) {
+      console.error('Error loading tasks:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
   
   useEffect(() => {
-    const loadTasks = async () => {
-      try {
-        const data = await fetchTasks();
-        setTasks(data);
-      } catch (error) {
-        console.error('Error loading tasks:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    
     loadTasks();
     
     // Set up polling to refresh task status
     const intervalId = setInterval(loadTasks, 3000);
     return () => clearInterval(intervalId);
   }, []);
+  
+  const handleRetry = async (taskId) => {
+    setRetrying(taskId);
+    try {
+      await retryTask(taskId);
+      await loadTasks(); // Refresh tasks after retry
+    } catch (error) {
+      console.error('Error retrying task:', error);
+    } finally {
+      setRetrying(null);
+    }
+  };
   
   if (loading) {
     return <div>Loading tasks...</div>;
@@ -46,7 +59,7 @@ const TaskList = () => {
           </thead>
           <tbody>
             {tasks.map(task => (
-              <tr key={task.id}>
+              <tr key={task.id} className={task.status === 'failed' ? 'failed-task' : ''}>
                 <td>{task.id}</td>
                 <td>
                   <span className={`status-${task.status}`}>
@@ -57,6 +70,14 @@ const TaskList = () => {
                 <td>
                   {task.status === 'completed' ? (
                     <Link to={`/tasks/${task.id}`}>View Results</Link>
+                  ) : task.status === 'failed' ? (
+                    <button 
+                      className="retry-button" 
+                      onClick={() => handleRetry(task.id)}
+                      disabled={retrying === task.id}
+                    >
+                      {retrying === task.id ? 'Retrying...' : 'Retry Task'}
+                    </button>
                   ) : (
                     <span>Processing...</span>
                   )}

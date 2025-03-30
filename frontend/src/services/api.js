@@ -34,3 +34,12 @@ export const fetchTaskAnalytics = async (taskId, filters = {}) => {
     const response = await axios.get(`${API_URL}/tasks/${taskId}/analytics`, { params });
     return response.data;
 };
+
+export const exportTaskData = async (taskId, format = 'csv', filters = {}) => {
+  const params = new URLSearchParams();
+  params.append('format', format);
+  if (filters.company) params.append('company', filters.company);
+  if (filters.year) params.append('year', filters.year);
+  
+  window.location.href = `${API_URL}/tasks/${taskId}/export?${params.toString()}`;
+};

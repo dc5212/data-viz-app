@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { fetchTask, fetchTaskAnalytics } from '../services/api';
 import BarChart from '../components/BarChart';
 import LineChart from '../components/LineChart';
+import { exportTaskData } from '../services/api';
 
 const TaskDetails = () => {
   const { taskId } = useParams();
@@ -53,6 +54,14 @@ const TaskDetails = () => {
       ...filters,
       [name]: value
     });
+  };
+
+  const handleExportCSV = () => {
+    exportTaskData(taskId, 'csv', filters);
+  };
+
+  const handleExportExcel = () => {
+      exportTaskData(taskId, 'excel', filters);
   };
   
   
@@ -169,6 +178,21 @@ const TaskDetails = () => {
               <button onClick={applyFilters}>Apply Filters</button>
             </div>
           </div>
+
+          {task.status === 'completed' && (
+              <div className="export-buttons">
+                  <h3>Export Data</h3>
+                  <div className="button-group">
+                      <button onClick={handleExportCSV} className="export-btn">
+                          Export as CSV
+                      </button>
+                      <button onClick={handleExportExcel} className="export-btn">
+                          Export as Excel
+                      </button>
+                  </div>
+              </div>
+          )}
+
           
           {analytics && (
             <div className="charts">

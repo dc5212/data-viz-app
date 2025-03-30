@@ -4,6 +4,7 @@ import { fetchTask, fetchTaskAnalytics } from '../services/api';
 import BarChart from '../components/BarChart';
 import LineChart from '../components/LineChart';
 import { exportTaskData } from '../services/api';
+import PriceChart from '../components/PriceChart';
 
 const TaskDetails = () => {
   const { taskId } = useParams();
@@ -204,6 +205,11 @@ const TaskDetails = () => {
               <div className="chart-container">
                 <h3>Sales by Company</h3>
                 <BarChart data={analytics.bar_chart} />
+              </div>
+              
+              <div className="chart-container">
+                <h3>Average Price by Company</h3>
+                <PriceChart data={analytics.price_chart} />
               </div>
             </div>
           )}

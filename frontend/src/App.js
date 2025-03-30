@@ -1,7 +1,8 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import TaskDetails from './pages/TaskDetails';
+import Dashboard from './pages/Dashboard';
 import './App.css';
 
 function App() {
@@ -10,13 +11,15 @@ function App() {
       <div className="App">
         <header className="App-header">
           <nav>
-            <a href="/">Data Visualization App</a>
+            <Link to="/">Home</Link>
+            <Link to="/dashboard">Dashboard</Link>
           </nav>
         </header>
         
         <main>
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route path="/dashboard" component={Dashboard} />
             <Route path="/tasks/:taskId" component={TaskDetails} />
           </Switch>
         </main>

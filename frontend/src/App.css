@@ -1,0 +1,352 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+  }
+  
+  .App {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .App-header {
+    background-color: #282c34;
+    padding: 1rem 2rem;
+    color: white;
+  }
+  
+  .App-header nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  main {
+    flex: 1;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  footer {
+    background-color: #282c34;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  
+  .form-container,
+  .list-container {
+    flex: 1;
+    min-width: 300px;
+  }
+  
+  .task-form,
+  .task-list,
+  .task-details {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  form .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+  
+  form input[type="text"],
+  form input[type="number"],
+  form select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  form button {
+    background-color: #4682b4;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  form button:hover {
+    background-color: #3a6d99;
+  }
+  
+  form button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .checkbox-group div {
+    display: flex;
+    align-items: center;
+  }
+  
+  .checkbox-group input[type="checkbox"] {
+    margin-right: 0.5rem;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+  
+  table th,
+  table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+  }
+  
+  table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+  }
+  
+  .status-pending {
+    color: #f39c12;
+  }
+  
+  .status-in_progress {
+    color: #3498db;
+  }
+  
+  .status-completed {
+    color: #2ecc71;
+  }
+  
+  .status-failed {
+    color: #e74c3c;
+  }
+  
+  .alert {
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+  
+  .alert.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+  }
+  
+  .error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+  
+  .charts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .chart-container {
+    flex: 1;
+    min-width: 500px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+  }
+  
+  .chart-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .filters {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    margin-top: 1rem;
+  }
+  
+  .filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: flex-end;
+  }
+  
+  .filter-form .form-group {
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  /* Enhanced Chart Styles */
+  .chart-container h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #2c5282;
+    font-weight: 600;
+  }
+  
+  /* Tooltip styles */
+  .tooltip {
+    pointer-events: none;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+    font-size: 12px !important;
+    padding: 8px 12px !important;
+    border-radius: 4px !important;
+  }
+  
+  /* Animation for chart elements */
+  .bar, .dot, path {
+    transition: all 0.3s ease;
+  }
+  
+  /* Bar hover effect */
+  .bar:hover {
+    opacity: 0.8;
+  }
+  
+  /* Chart titles */
+  text {
+    fill: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  /* Grid lines */
+  .grid line {
+    stroke: lightgrey;
+    stroke-opacity: 0.7;
+    shape-rendering: crispEdges;
+  }
+  
+  /* Bar label styles */
+  .bar-label {
+    fill: #333;
+    font-weight: bold;
+  }
+  
+  /* Apply Filters button */
+  button.apply-filters {
+    background-color: #4682b4;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  button.apply-filters:hover {
+    background-color: #3a6d99;
+    transform: translateY(-2px);
+  }
+  
+  /* Loading indicator */
+  .loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+  
+  .loading-spinner:after {
+    content: " ";
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 6px solid #4682b4;
+    border-color: #4682b4 transparent #4682b4 transparent;
+    animation: spinner 1.2s linear infinite;
+  }
+  
+  @keyframes spinner {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .chart-container {
+      min-width: 100%;
+    }
+    
+    .filter-form {
+      flex-direction: column;
+    }
+    
+    .filter-form .form-group {
+      width: 100%;
+    }
+  }
+  
+  /* Task card hover effect */
+  .task-list table tr {
+    transition: all 0.2s ease;
+  }
+  
+  .task-list table tr:hover {
+    background-color: #f8f9fa;
+  }
+  
+  /* View Results link styling */
+  a.view-results {
+    color: #4682b4;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+  
+  a.view-results:hover {
+    color: #3a6d99;
+    text-decoration: underline;
+  }
+  
+  /* Add a nice focus style for inputs */
+  input:focus, select:focus {
+    outline: none;
+    border-color: #4682b4;
+    box-shadow: 0 0 0 2px rgba(70, 130, 180, 0.2);
+  }
